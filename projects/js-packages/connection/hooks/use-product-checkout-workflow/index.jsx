@@ -1,9 +1,9 @@
 import restApi from '@automattic/jetpack-api';
-import { getCalypsoOrigin } from '@automattic/jetpack-connection';
 import { getScriptData } from '@automattic/jetpack-script-data';
 import { useDispatch, useSelect } from '@wordpress/data';
 import debugFactory from 'debug';
 import { useEffect, useState, useMemo } from 'react';
+import { getCalypsoOrigin } from '@automattic/jetpack-connection';
 import useConnection from '../../components/use-connection';
 import { STORE_ID } from '../../state/store.jsx';
 
@@ -52,7 +52,7 @@ export default function useProductCheckoutWorkflow( {
 	const [ hasCheckoutStarted, setCheckoutStarted ] = useState( false );
 	const { registerSite } = useDispatch( STORE_ID );
 
-	const blogID = useSelect( select => select( STORE_ID ).getBlogId(), [ STORE_ID ] );
+	const blogID = useSelect( select => select( STORE_ID ).getBlogId(), [] );
 	debug( 'blogID is %s', blogID ?? 'undefined' );
 
 	useBlogIdSuffix = useBlogIdSuffix && !! blogID;
